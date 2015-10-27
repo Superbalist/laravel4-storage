@@ -39,7 +39,7 @@ class Filesystem extends BaseFilesystem {
 				'Expires' => $expires,
 				'Signature' => base64_encode($signature)
 			);
-			return sprintf('https://storage.googleapis.com/%s/%s?%s', $bucket, $path, http_build_query($params));
+			return sprintf('https://storage.cloud.google.com/%s/%s?%s', $bucket, $path, http_build_query($params));
 		}
 
 		return null;
