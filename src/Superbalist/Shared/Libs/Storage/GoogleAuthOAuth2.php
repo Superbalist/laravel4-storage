@@ -1,6 +1,6 @@
 <?php namespace Superbalist\Shared\Libs\Storage;
 
-class GoogleAuthOauth2 extends \Google_Auth_OAuth2 {
+class GoogleAuthOAuth2 extends \Google_Auth_OAuth2 {
 
 	/**
 	 * @var \Google_Auth_AssertionCredentials

@@ -68,7 +68,7 @@ abstract class StorageAdapterFactory {
 				);
 
 				$config = new \Google_Config();
-				$config->setAuthClass('\Superbalist\Shared\Libs\Storage\GoogleAuthOauth2');
+				$config->setAuthClass('\Superbalist\Shared\Libs\Storage\GoogleAuthOAuth2');
 				$client = new \Google_Client($config);
 				$client->setAssertionCredentials($credentials);
 				$client->setDeveloperKey($service['developer_key']);

@@ -28,7 +28,7 @@ class Filesystem extends BaseFilesystem {
 			// getAssertionCredentials() function
 			$service = $adapter->getService();
 			$client = $service->getClient();
-			$auth = $client->getAuth(); /** @var GoogleAuthOauth2 $auth */
+			$auth = $client->getAuth(); /** @var GoogleAuthOAuth2 $auth */
 			$credentials = $auth->getAssertionCredentials();
 
 			$signer = new \Google_Signer_P12($credentials->privateKey, $credentials->privateKeyPassword);
