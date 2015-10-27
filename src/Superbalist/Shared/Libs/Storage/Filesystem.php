@@ -28,7 +28,7 @@ class Filesystem extends BaseFilesystem {
 			// getAssertionCredentials() function
 			$service = $adapter->getService();
 			$client = $service->getClient();
-			$auth = $client->getAuth(); /** @var GoogleAuthOAuth2 $auth */
+			$auth = $client->getAuth(); /** @var GoogleAuthOauth2 $auth */
 			$credentials = $auth->getAssertionCredentials();
 
 			$signer = new \Google_Signer_P12($credentials->privateKey, $credentials->privateKeyPassword);
@@ -39,7 +39,7 @@ class Filesystem extends BaseFilesystem {
 				'Expires' => $expires,
 				'Signature' => base64_encode($signature)
 			);
-			return sprintf('https://storage.cloud.google.com/%s/%s?%s', $bucket, $path, http_build_query($params));
+			return sprintf('https://storage.googleapis.com/%s/%s?%s', $bucket, $path, http_build_query($params));
 		}
 
 		return null;
