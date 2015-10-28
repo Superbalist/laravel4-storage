@@ -78,7 +78,7 @@ class Filesystem extends BaseFilesystem {
 
 	/**
 	 * @param string $connection
-	 * @return \League\Flysystem\FilesystemInterface
+	 * @return Filesystem
 	 */
 	public static function connection($connection)
 	{
