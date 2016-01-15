@@ -2,13 +2,13 @@
 
 use Aws\S3\S3Client;
 use Config;
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Memory;
 use League\Flysystem\Rackspace\RackspaceAdapter;
 use OpenCloud\Rackspace;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
+use Superbalist\Shared\Libs\Storage\Adapter\Local;
 
 abstract class StorageAdapterFactory {
 
@@ -30,7 +30,7 @@ abstract class StorageAdapterFactory {
 
 		switch ($connection['adapter']) {
 			case 'LOCAL':
-				return new Local($connection['root_path']);
+				return new Local($connection['root_path'], $connection['public_url_base']);
 			case 'RACKSPACE':
 				$service = isset($connection['service']) ? Config::get($connection['service']) : Config::get('services.rackspace');
 				$client = new Rackspace(

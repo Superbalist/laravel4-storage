@@ -3,6 +3,7 @@
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Filesystem as BaseFilesystem;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
+use Superbalist\Shared\Libs\Storage\Adapter\Local;
 use Symfony\Component\Finder\Adapter\AdapterInterface;
 
 class Filesystem extends BaseFilesystem {
@@ -14,7 +15,6 @@ class Filesystem extends BaseFilesystem {
 	 */
 	public function getSignedUrl($path, $ttl = 7200)
 	{
-		// TODO: handle multiple adapters here
 		$adapter = $this->getRealAdapter();
 		if ($adapter instanceof GoogleStorageAdapter) {
 			// see https://cloud.google.com/storage/docs/access-control?hl=en#Signed-URLs
@@ -40,6 +40,10 @@ class Filesystem extends BaseFilesystem {
 				'Signature' => base64_encode($signature)
 			);
 			return sprintf('https://storage.googleapis.com/%s/%s?%s', $bucket, $path, http_build_query($params));
+		} else if ($adapter instanceof Local) {
+			// local adapter doesn't support signed urls
+			// files are assumed to be public
+			return $this->getPublicUrl($path);
 		}
 
 		return null;
@@ -51,12 +55,15 @@ class Filesystem extends BaseFilesystem {
 	 */
 	public function getPublicUrl($path)
 	{
-		// TODO: handle multiple adapters here
 		$adapter = $this->getRealAdapter();
 		if ($adapter instanceof GoogleStorageAdapter) {
 			$bucket = trim($adapter->getBucket(), '/');
 			$path = trim($path, '/');
 			return sprintf('https://storage.googleapis.com/%s/%s', $bucket, $path);
+		} else if ($adapter instanceof Local) {
+			$base = rtrim($adapter->getPublicUrlBase(), '/');
+			$path = trim($path, '/');
+			return $base . '/' . $path;
 		}
 
 		return null;

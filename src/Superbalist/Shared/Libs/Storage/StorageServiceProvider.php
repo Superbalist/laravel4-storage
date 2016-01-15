@@ -2,7 +2,6 @@
 
 use Config;
 use Illuminate\Support\ServiceProvider;
-use League\Flysystem\Adapter\Local;
 
 class StorageServiceProvider extends ServiceProvider {
 
