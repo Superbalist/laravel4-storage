@@ -89,7 +89,7 @@ return array(
 );
 ```
 
-Add settings to the services.php config file, depending on which storage adapter(s) you're using.
+Create a services.php config file.
 ```php
 <?php
 
