@@ -1,4 +1,4 @@
-<?php namespace Superbalist\Shared\Libs\Storage;
+<?php namespace Superbalist\Storage;
 
 use Config;
 use Illuminate\Support\ServiceProvider;

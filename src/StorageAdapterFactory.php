@@ -1,4 +1,4 @@
-<?php namespace Superbalist\Shared\Libs\Storage;
+<?php namespace Superbalist\Storage;
 
 use Aws\S3\S3Client;
 use Config;
@@ -8,7 +8,7 @@ use League\Flysystem\Cached\Storage\Memory;
 use League\Flysystem\Rackspace\RackspaceAdapter;
 use OpenCloud\Rackspace;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
-use Superbalist\Shared\Libs\Storage\Adapter\Local;
+use Superbalist\Storage\Adapter\Local;
 
 abstract class StorageAdapterFactory {
 
@@ -68,7 +68,7 @@ abstract class StorageAdapterFactory {
 				);
 
 				$config = new \Google_Config();
-				$config->setAuthClass('\Superbalist\Shared\Libs\Storage\GoogleAuthOAuth2');
+				$config->setAuthClass(GoogleAuthOAuth2::class);
 				$client = new \Google_Client($config);
 				$client->setAssertionCredentials($credentials);
 				$client->setDeveloperKey($service['developer_key']);

@@ -1,9 +1,9 @@
-<?php namespace Superbalist\Shared\Libs\Storage;
+<?php namespace Superbalist\Storage;
 
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Filesystem as BaseFilesystem;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
-use Superbalist\Shared\Libs\Storage\Adapter\Local;
+use Superbalist\Storage\Adapter\Local;
 use Symfony\Component\Finder\Adapter\AdapterInterface;
 
 class Filesystem extends BaseFilesystem {

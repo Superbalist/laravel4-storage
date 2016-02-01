@@ -1,4 +1,4 @@
-<?php namespace Superbalist\Shared\Libs\Storage;
+<?php namespace Superbalist\Storage;
 
 class GoogleAuthOAuth2 extends \Google_Auth_OAuth2 {
 

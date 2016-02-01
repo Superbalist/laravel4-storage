@@ -1,4 +1,4 @@
-<?php namespace Superbalist\Shared\Libs\Storage\Adapter;
+<?php namespace Superbalist\Storage\Adapter;
 
 class Local extends \League\Flysystem\Adapter\Local {
 

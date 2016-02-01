@@ -1,4 +1,4 @@
-<?php namespace Superbalist\Shared\Libs\Storage;
+<?php namespace Superbalist\Storage;
 
 use Illuminate\Support\Facades\Facade;
 
