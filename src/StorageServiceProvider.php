@@ -1,18 +1,20 @@
-<?php namespace Superbalist\Storage;
+<?php
+namespace Superbalist\Storage;
 
 use Config;
 use Illuminate\Support\ServiceProvider;
 
-class StorageServiceProvider extends ServiceProvider {
+class StorageServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Register the service provider.
-	 */
-	public function register()
-	{
-		$this->app->bind('storage', function() {
-			$adapter = StorageAdapterFactory::makeCached(Config::get('storage.default'));
-			return new Filesystem($adapter);
-		});
-	}
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+        $this->app->bind('storage', function() {
+            $adapter = StorageAdapterFactory::makeCached(Config::get('storage.default'));
+            return new Filesystem($adapter);
+        });
+    }
 }
