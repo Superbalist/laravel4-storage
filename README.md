@@ -141,6 +141,38 @@ return array(
 
 ## Usage
 
+Please see http://flysystem.thephpleague.com/api/ for full documentation on the core API.
+
+All functions provided by the core API are available behind the `Storage` facade in Laravel.
+
 ```php
-// TODO: add usage examples
+use Storage;
+
+// write to a file
+Storage::write('path/to/file.txt', 'contents');
+
+// update a file
+Storage::update('path/to/file.txt', 'new contents');
+
+// read a file
+$contents = Storage::read('path/to/file.txt');
+
+// check if a file exists
+$exists = Storage::has('path/to/file.txt');
+
+// delete a file
+Storage::delete('path/to/file.txt');
+
+// rename a file
+Storage::rename('filename.txt', 'newname.txt');
+
+// copy a file
+Storage::copy('filename.txt', 'duplicate.txt');
+
+// specify the storage connection to use
+$contents = Storage::connection('rackspace')->listContents();
+
+// get a public url to a file
+// this is currently only supported by the local and google cloud adapters
+$url = Storage::getPublicUrl('path/to/file.txt');
 ```
