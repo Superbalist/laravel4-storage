@@ -13,7 +13,7 @@ class StorageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('storage', function() {
-            $adapter = StorageAdapterFactory::makeCached(Config::get('storage.default'));
+            $adapter = StorageAdapterFactory::makeCached($this->app['config']->get('storage.default'));
             return new Filesystem($adapter);
         });
     }

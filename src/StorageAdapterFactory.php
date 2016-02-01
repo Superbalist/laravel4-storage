@@ -34,9 +34,9 @@ abstract class StorageAdapterFactory
             case 'LOCAL':
                 return new Local($connection['root_path'], $connection['public_url_base']);
             case 'RACKSPACE':
-                $service = isset($connection['service']) ? Config::get($connection['service']) : Config::get(
-                    'services.rackspace'
-                );
+                $service = isset($connection['service']) ?
+                    Config::get($connection['service']) :
+                    Config::get('services.rackspace');
                 $client = new Rackspace(
                     $service['api_endpoint'],
                     array(
@@ -52,9 +52,9 @@ abstract class StorageAdapterFactory
                 $container = $store->getContainer($connection['container']);
                 return new RackspaceAdapter($container);
             case 'AWS':
-                $service = isset($connection['service']) ? Config::get($connection['service']) : Config::get(
-                    'services.aws'
-                );
+                $service = isset($connection['service']) ?
+                    Config::get($connection['service']) :
+                    Config::get('services.aws');
                 $client = S3Client::factory(
                     array(
                         'credentials' => array(
@@ -67,9 +67,9 @@ abstract class StorageAdapterFactory
                 );
                 return new AwsS3Adapter($client, $connection['bucket']);
             case 'GCLOUD':
-                $service = isset($connection['service']) ? Config::get($connection['service']) : Config::get(
-                    'services.google_cloud'
-                );
+                $service = isset($connection['service']) ?
+                    Config::get($connection['service']) :
+                    Config::get('services.google_cloud');
                 $credentials = new \Google_Auth_AssertionCredentials(
                     $service['service_account'],
                     [\Google_Service_Storage::DEVSTORAGE_FULL_CONTROL],
@@ -88,6 +88,7 @@ abstract class StorageAdapterFactory
                 return new GoogleStorageAdapter($service, $connection['bucket']);
 
         }
+
         throw new \RuntimeException(sprintf('The storage adapter %s is invalid.', $connection['adapter']));
     }
 

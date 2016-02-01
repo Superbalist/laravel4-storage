@@ -5,7 +5,6 @@ use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Filesystem as BaseFilesystem;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
 use Superbalist\Storage\Adapter\Local;
-use Symfony\Component\Finder\Adapter\AdapterInterface;
 
 class Filesystem extends BaseFilesystem
 {
@@ -43,12 +42,10 @@ class Filesystem extends BaseFilesystem
                 'Signature' => base64_encode($signature)
             );
             return sprintf('https://storage.googleapis.com/%s/%s?%s', $bucket, $path, http_build_query($params));
-        } else {
-            if ($adapter instanceof Local) {
-                // local adapter doesn't support signed urls
-                // files are assumed to be public
-                return $this->getPublicUrl($path);
-            }
+        } elseif ($adapter instanceof Local) {
+            // local adapter doesn't support signed urls
+            // files are assumed to be public
+            return $this->getPublicUrl($path);
         }
 
         return null;
@@ -65,7 +62,7 @@ class Filesystem extends BaseFilesystem
             $bucket = trim($adapter->getBucket(), '/');
             $path = trim($path, '/');
             return sprintf('https://storage.googleapis.com/%s/%s', $bucket, $path);
-        } else if ($adapter instanceof Local) {
+        } elseif ($adapter instanceof Local) {
             $base = rtrim($adapter->getPublicUrlBase(), '/');
             $path = trim($path, '/');
             return $base . '/' . $path;
@@ -75,7 +72,7 @@ class Filesystem extends BaseFilesystem
     }
 
     /**
-     * @return \League\Flysystem\AdapterInterface|AdapterInterface
+     * @return \League\Flysystem\AdapterInterface
      */
     protected function getRealAdapter()
     {

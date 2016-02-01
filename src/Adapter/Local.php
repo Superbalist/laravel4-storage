@@ -34,4 +34,12 @@ class Local extends \League\Flysystem\Adapter\Local
     {
         return $this->publicUrlBase;
     }
+
+    /**
+     * @param string $publicUrlBase
+     */
+    public function setPublicUrlBase($publicUrlBase)
+    {
+        $this->publicUrlBase = $publicUrlBase;
+    }
 }
