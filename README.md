@@ -4,7 +4,8 @@ A filesystem abstraction library for Laravel 4
 
 [![Author](http://img.shields.io/badge/author-@superbalist-blue.svg?style=flat-square)](https://twitter.com/superbalist)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-
+[![Packagist Version](https://img.shields.io/packagist/v/superbalist/laravel4-storage.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel4-storage)
+[![Total Downloads](https://img.shields.io/packagist/dt/superbalist/laravel4-storage.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel4-storage)
 
 This package brings a filesystem abstraction layer to Laravel 4.  This is an organic feature of Laravel 5 which uses the
 flysystem package under the hood.  Please note that this is not a like-for-like version of the Laravel 5 package and that
