@@ -1,4 +1,5 @@
 <?php
+
 namespace Superbalist\Storage;
 
 use Aws\S3\S3Client;
@@ -13,11 +14,12 @@ use Superbalist\Storage\Adapter\Local;
 
 abstract class StorageAdapterFactory
 {
-
     /**
      * @param string $name
-     * @return \League\Flysystem\AdapterInterface
+     *
      * @throws \RuntimeException
+     *
+     * @return \League\Flysystem\AdapterInterface
      */
     public static function make($name)
     {
@@ -39,11 +41,11 @@ abstract class StorageAdapterFactory
                     Config::get('services.rackspace');
                 $client = new Rackspace(
                     $service['api_endpoint'],
-                    array(
+                    [
                         'username' => $service['username'],
                         'tenantName' => $service['tenant_name'],
-                        'apiKey' => $service['api_key']
-                    )
+                        'apiKey' => $service['api_key'],
+                    ]
                 );
                 $store = $client->objectStoreService(
                     $connection['store'],
@@ -56,14 +58,14 @@ abstract class StorageAdapterFactory
                     Config::get($connection['service']) :
                     Config::get('services.aws');
                 $client = S3Client::factory(
-                    array(
-                        'credentials' => array(
+                    [
+                        'credentials' => [
                             'key' => $service['access_key'],
                             'secret' => $service['secret_key'],
-                        ),
+                        ],
                         'region' => $service['region'],
-                        'version' => 'latest'
-                    )
+                        'version' => 'latest',
+                    ]
                 );
                 return new AwsS3Adapter($client, $connection['bucket']);
             case 'GCLOUD':
@@ -86,7 +88,6 @@ abstract class StorageAdapterFactory
                 $service = new \Google_Service_Storage($client);
 
                 return new GoogleStorageAdapter($service, $connection['bucket']);
-
         }
 
         throw new \RuntimeException(sprintf('The storage adapter %s is invalid.', $connection['adapter']));
@@ -94,6 +95,7 @@ abstract class StorageAdapterFactory
 
     /**
      * @param string $name
+     *
      * @return \League\Flysystem\AdapterInterface
      */
     public static function makeCached($name)
