@@ -3,6 +3,7 @@
 A filesystem abstraction library for Laravel 4
 
 [![Author](http://img.shields.io/badge/author-@superbalist-blue.svg?style=flat-square)](https://twitter.com/superbalist)
+[![StyleCI](https://styleci.io/repos/50839213/shield?branch=master)](https://styleci.io/repos/50839213)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Packagist Version](https://img.shields.io/packagist/v/superbalist/laravel4-storage.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel4-storage)
 [![Total Downloads](https://img.shields.io/packagist/dt/superbalist/laravel4-storage.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel4-storage)
