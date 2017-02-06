@@ -1,4 +1,5 @@
 <?php
+
 namespace Superbalist\Storage;
 
 use League\Flysystem\Cached\CachedAdapter;
@@ -8,10 +9,10 @@ use Superbalist\Storage\Adapter\Local;
 
 class Filesystem extends BaseFilesystem
 {
-
     /**
      * @param string $path
      * @param int $ttl
+     *
      * @return string|null
      */
     public function getSignedUrl($path, $ttl = 7200)
@@ -36,11 +37,11 @@ class Filesystem extends BaseFilesystem
             $signer = new \Google_Signer_P12($credentials->privateKey, $credentials->privateKeyPassword);
             $signature = $signer->sign($raw);
 
-            $params = array(
+            $params = [
                 'GoogleAccessId' => $credentials->serviceAccountName,
                 'Expires' => $expires,
-                'Signature' => base64_encode($signature)
-            );
+                'Signature' => base64_encode($signature),
+            ];
             return sprintf('https://storage.googleapis.com/%s/%s?%s', $bucket, $path, http_build_query($params));
         } elseif ($adapter instanceof Local) {
             // local adapter doesn't support signed urls
@@ -53,6 +54,7 @@ class Filesystem extends BaseFilesystem
 
     /**
      * @param string $path
+     *
      * @return string|null
      */
     public function getPublicUrl($path)
@@ -87,6 +89,7 @@ class Filesystem extends BaseFilesystem
 
     /**
      * @param string $connection
+     *
      * @return Filesystem
      */
     public static function connection($connection)
